@@ -77,22 +77,28 @@ The sample code uses sprint for autowiring and injection. Here is the [spring co
 
 
 We must start server trace at the hight level as the following,
+
 	braveTracer.startServerTracer("ServerCall");
 	
 When we are done server tracing, 
+
 	braveTracer.stopServerTracer();
 	
 	
 To start a client tracing,
+
 	braveTracer.startClientTracer("FirstLevelClient");
 	
 To end a client tracing,
+
 	braveTracer.stopClientTracer();
 	
 To add a internal client trace marker,
+
 	braveTracer.submitAnnotation("Marker 1", "begin sleep marker");
 	
 To add additional context to the client trace,	
+
 	braveTracer.submitBinaryAnnotation("Some Interesting Contaxt Value", "session id is 123");
 	
 Nested client trace can be down as the following,
