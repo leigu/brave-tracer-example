@@ -60,3 +60,54 @@ After the above change, the sample will write to SpanCollector running on localh
 or local Flume agent.
 
 Run the sample code, and then switch to Zipkin UI and one should see the following picture,
+![Zipkin UI Top View:](./brave-tracer.png?raw=true)
+
+As we can see, the UI shows the top level server trace that includes three levels of nested client traces.
+
+We can add client tracing annotations, which will create circle marker in the diagram. Tracing annotations are important if we want to add additional tracing information within the client trace.
+
+Click on the first client trace, which brings up the following picture,
+![First Level Client Trace](./brave-tracer-firstlevel.png?raw=true)
+
+
+## Under the Hook
+The main sample class is [BraveTracerSample](https://github.com/leigu/brave-tracer-example/blob/master/src/main/java/com/github/leigu/brave/tracerexample/BraveTracerSample.java). 
+
+The sample code uses sprint for autowiring and injection. Here is the [spring configuration file](https://github.com/leigu/brave-tracer-example/blob/master/src/main/resources/brave-context.xml).
+
+
+We must start server trace at the hight level as the following,
+	braveTracer.startServerTracer("ServerCall");
+	
+When we are done server tracing, 
+	braveTracer.stopServerTracer();
+	
+	
+To start a client tracing,
+	braveTracer.startClientTracer("FirstLevelClient");
+	
+To end a client tracing,
+	braveTracer.stopClientTracer();
+	
+To add a internal client trace marker,
+	braveTracer.submitAnnotation("Marker 1", "begin sleep marker");
+	
+To add additional context to the client trace,	
+	braveTracer.submitBinaryAnnotation("Some Interesting Contaxt Value", "session id is 123");
+	
+Nested client trace can be down as the following,
+
+	// start first level tracing
+	braveTracer.startClientTracer("FirstLevelClient");
+	//do stuff
+	
+	// start second level tracing
+	braveTracer.startClientTracer("SecondLevelClient");
+	// do some more stuff
+	
+	// done second level tracking
+	braveTracer.stopClientTracer();
+	
+	// done first level tracing
+	braveTracer.stopClientTracer();
+
