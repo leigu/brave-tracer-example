@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.github.kristofa.brave.BraveTracer;
-import com.github.kristofa.brave.BraveTracerTest;
 
 @Configuration
 public class BraveTracerSample {

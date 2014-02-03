@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 
 import com.github.kristofa.brave.Brave;
 import com.github.kristofa.brave.BraveTracer;
-import com.github.kristofa.brave.BraveTracerTest;
 import com.github.kristofa.brave.ClientTracer;
 import com.github.kristofa.brave.EndPointSubmitter;
 import com.github.kristofa.brave.FixedSampleRateTraceFilter;
