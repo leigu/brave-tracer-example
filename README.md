@@ -9,6 +9,8 @@ So I forked Brave and create a new [branch](https://github.com/leigu/brave) and 
 * Unlimited level of nested client tracing
 * A simple and easy to use API that can be used to trace any block of Java code or method
 
+## Brave, REST, and Brave Tracer
+To unlock the true potential of Zipkin, see [how one can integrate Brave, REST, and Brave Tracer to unlock the true potential of Zipkin](https://github.com/leigu/brave-resteasy-example).
 ## How to Install and Run ##
 
 ### Download and Install
