@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Scope;
 import com.github.kristofa.brave.Brave;
 import com.github.kristofa.brave.BraveTracer;
 import com.github.kristofa.brave.ClientTracer;
-import com.github.kristofa.brave.EndPointSubmitter;
+import com.github.kristofa.brave.EndpointSubmitter;
 import com.github.kristofa.brave.FixedSampleRateTraceFilter;
-import com.github.kristofa.brave.LoggingSpanCollectorImpl;
+import com.github.kristofa.brave.LoggingSpanCollector;
 import com.github.kristofa.brave.ServerTracer;
 import com.github.kristofa.brave.SpanCollector;
 import com.github.kristofa.brave.TraceFilter;
@@ -25,8 +25,8 @@ public class BraveTracerConfiguration {
     public SpanCollector spanCollector() {
 
         // For development purposes we use the logging span collector.
-        return new LoggingSpanCollectorImpl();
-    	//return new ZipkinSpanCollector("localhost", 9410);
+        //return new LoggingSpanCollector();
+    	return new ZipkinSpanCollector("52.88.91.102", 9410);
     }
     
     @Bean
@@ -51,9 +51,9 @@ public class BraveTracerConfiguration {
 	}
 	
 	@Bean
-	public EndPointSubmitter endPointSubmitter()
+	public EndpointSubmitter endPointSubmitter()
 	{
-		return Brave.getEndPointSubmitter();
+		return Brave.getEndpointSubmitter();
 	}
 	
 	@Bean
